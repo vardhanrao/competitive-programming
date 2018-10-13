@@ -1,33 +1,63 @@
 
-// C++ program to find minimum time 
+// Efficient C++ program to find minimum time 
 // required to produce m items. 
 #include<bits/stdc++.h> 
 using namespace std; 
   
-// Return the minimum time required to 
-// produce m items with given machines. 
-int minTime(int arr[], int n, int m) 
+// Return the number of items can be 
+// produced in temp sec. 
+int findItems(int arr[], int n, int temp) 
 { 
-    // Intialise time, items equal to 0. 
-    int t = 0; 
-  
-    while (1) 
-    { 
-        int items = 0; 
-  
-        // Calculating items at each second 
-        for (int i = 0; i < n; i++) 
-            items += (t / arr[i]); 
-  
-        // If items equal to m return time. 
-        if (items >= m) 
-            return t; 
-  
-        t++; // Increment time 
-    } 
+    int ans = 0; 
+    for (int i = 0; i < n; i++) 
+        ans += (temp/arr[i]); 
+    return ans; 
 } 
   
-// Driver Code 
+// Binary search to find minimum time required 
+// to produce M items. 
+int bs(int arr[], int n, int m, int high) 
+{ 
+    int low = 1; 
+  
+    // Doing binary search to find minimum 
+    // time. 
+    while (low < high) 
+    { 
+        // Finding the middle value. 
+        int mid = (low+high)>>1; 
+  
+        // Calculate number of items to 
+        // be produce in mid sec. 
+        int itm = findItems(arr, n, mid); 
+  
+        // If items produce is less than 
+        // required, set low = mid + 1. 
+        if (itm < m) 
+            low = mid+1; 
+  
+        //  Else set high = mid. 
+        else
+            high = mid; 
+    } 
+  
+    return high; 
+} 
+  
+// Return the minimum time required to 
+// produce m items with given machine. 
+int minTime(int arr[], int n, int m) 
+{ 
+    int maxval = INT_MIN; 
+  
+    // Finding the maximum time in the array. 
+    for (int i = 0; i < n; i++) 
+        maxval = max(maxval, arr[i]); 
+  
+    return bs(arr, n, m, maxval*m); 
+} 
+  
+// Driven Program 
 int main() 
 { 
     int arr[] = { 1, 2, 3 }; 
