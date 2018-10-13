@@ -2,6 +2,7 @@
 #include <vector>
 
 using namespace std;
+
 using elem_type = unsigned int;
 
 constexpr const unsigned long mod = 1000000007;
