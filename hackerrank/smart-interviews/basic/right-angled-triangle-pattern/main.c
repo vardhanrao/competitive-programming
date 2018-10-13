@@ -2,7 +2,7 @@
 
 int main() {
     int tests;
-    int i, j, k;
+    int i, p, k;
     scanf("%d", &tests);
 
     int cases[tests];
@@ -14,8 +14,8 @@ int main() {
         int weight = cases[i - 1];
         printf("Case #%d:", i);
 
-        for (j = 0; j <= weight; j++) {
-            int spaces = weight - j;
+        for (p = 0; p <= weight; p++) {
+            int spaces = weight - p;
             int stars = weight - spaces;
 
             for (k = 0; k < spaces; k++) {
