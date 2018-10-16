@@ -1,0 +1,9 @@
+n=int(input(""))
+
+i=0;
+while i <n:
+    
+    a=int(input(''))
+    b=int(input(''))
+    print(a**b)
+ 
