@@ -1,0 +1,1 @@
+The program calculates the maximum XOR pair in a given array.
