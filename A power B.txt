@@ -1,0 +1,7 @@
+int power(int a, int b) {
+	int x =1;
+	while(b--){
+		x*=a;
+	}
+	return x;
+}
